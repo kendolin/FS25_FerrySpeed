@@ -4,13 +4,15 @@ A Farming Simulator 25 mod that makes the map ferries run faster (or slower).
 
 ## Install
 
-Zip the contents of this folder (so `modDesc.xml` sits at the top level of the zip), name it `FS25_FerrySpeed.zip`, and put it in:
+Download `FS25_FerrySpeed.zip` from the [latest release](https://github.com/kendolin/FS25_FerrySpeed/releases/latest) and put it, unextracted, in:
 
 ```
 Documents/My Games/FarmingSimulator2025/mods
 ```
 
 Then enable the mod on your savegame.
+
+To build the zip yourself, zip `modDesc.xml`, `FerrySpeed.lua` and `icon_ferrySpeed.dds` so they sit at the top level of the zip.
 
 ## Setting the speed
 
@@ -31,3 +33,7 @@ The game's ferry code isn't publicly documented, so the mod doesn't change a spe
 ## Status
 
 Not yet verified in game. Very high multipliers may make vehicles slide on deck.
+
+## License
+
+[MIT](LICENSE) - free to use, modify and share.
