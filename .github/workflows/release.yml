@@ -1,0 +1,45 @@
+name: Release
+
+# Builds FS25_FerrySpeed.zip and publishes it as a GitHub release.
+# The release is named after the <version> in modDesc.xml (e.g. v1.1.0.0).
+#
+# Run it from the Actions tab ("Run workflow"), or push a tag starting with "v".
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read mod version
+        id: mod
+        run: |
+          version="$(grep -oPm1 '(?<=<version>)[^<]+' modDesc.xml)"
+          test -n "$version"
+          echo "tag=v$version" >> "$GITHUB_OUTPUT"
+
+      - name: Build mod zip
+        run: zip -j FS25_FerrySpeed.zip modDesc.xml FerrySpeed.lua icon_ferrySpeed.dds
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.mod.outputs.tag }}
+        run: |
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            gh release upload "$TAG" FS25_FerrySpeed.zip --clobber
+          else
+            gh release create "$TAG" FS25_FerrySpeed.zip \
+              --target "$GITHUB_SHA" \
+              --title "Ferry Speed $TAG" \
+              --notes "Download FS25_FerrySpeed.zip and drop it, unextracted, into your FS25 mods folder. Setup and usage are in the README."
+          fi
