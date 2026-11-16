@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<modDesc descVersion="94">
+    <author>kendolin</author>
+    <version>1.1.0.0</version>
+    <title>
+        <en>Ferry Speed</en>
+    </title>
+    <description>
+        <en><![CDATA[Makes the map ferries run faster (or slower).
+
+Default is 3x. Change it any of these ways:
+- Pause menu > Settings > Game Settings > Ferry Speed
+- Console: ferrySpeed 5
+- Or edit modSettings/FS25_FerrySpeed.xml in your FS25 user folder.
+
+Allowed range is 0.1 to 10. In multiplayer the host's value is the one that counts.]]></en>
+    </description>
+    <iconFilename>icon_ferrySpeed.dds</iconFilename>
+    <multiplayer supported="true"/>
+    <extraSourceFiles>
+        <sourceFile filename="FerrySpeed.lua"/>
+    </extraSourceFiles>
+</modDesc>
